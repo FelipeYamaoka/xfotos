@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Animated } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Animated, Button } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Header } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons'
-import xfotos from './assets/Xfotos.png';
 import xfotosWhite from './assets/XfotosWhite.png';
 
 // Definindo um valor que será reutilizado em mais de uma estilização
@@ -72,8 +74,7 @@ const Circulo = ({ onPress, animatedValue }) => {
   );
 }
 
-
-export default function App() {
+function TelaInicial({ navigation }) {
   // Propriedades de tempo, estado, referência de valor e outras possíveis definições
   const valorAnimado = useRef(new Animated.Value(0)).current; // valor de referência
   const animacao = (toValue) =>
@@ -91,7 +92,7 @@ export default function App() {
   };
 
   return (
-    // Cabeçalho
+    // Cabeçalho com a implementação do Circulo
     <SafeAreaProvider>
       <Header
         placement="center"
@@ -104,11 +105,42 @@ export default function App() {
         }}
       />
 
+      <Button
+        title="Acessar Cam"
+        onPress={() => navigation.push('Camera')}
+      />
+
       <View style={styles.container}>
         <StatusBar style="auto" hidden />
         <Circulo onPress={onPress} animatedValue={valorAnimado} />
       </View>
     </SafeAreaProvider>
+  );
+}
+
+function CameraScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Retornar para o início</Text>
+      <Button
+        title="Voltar para o Início"
+        onPress={() => navigation.push('Inicio')}
+      />
+    </View>
+  );
+}
+
+
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='Inicio' component={TelaInicial} />
+        <Stack.Screen name='Camera' component={CameraScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

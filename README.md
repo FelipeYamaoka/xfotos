@@ -8,3 +8,7 @@ Aplicação em React Native utilizando expo com o intuito de fazer transição d
 # Criando branches
 - Felipe
 - Danillo
+
+# Navegação entre telas
+- Tela Inicial
+- Câmera
