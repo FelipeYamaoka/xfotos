@@ -4,3 +4,7 @@ Aplicação em React Native utilizando expo com o intuito de fazer transição d
 # Integrantes do Grupo
 - Felipe Yamaoka
 - Danillo Aledes
+
+# Criando branches
+- Felipe
+- Danillo
