@@ -70,6 +70,13 @@ const TelaInicial = ({ navigation }) => {
         }}
       />
 
+      <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.push('Mapa')}>
+        <Feather
+          name={'map'}
+          size={50}
+          color={'#0ab6d8'}
+        />
+      </TouchableOpacity>
       <View style={styles.container}>
         <StatusBar style="auto" hidden />
         <Circulo onPress={onPress} animatedValue={valorAnimado} />
