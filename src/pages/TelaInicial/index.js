@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-gesture-handler';
 import React, { useRef, useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Animated, Button } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
+import Constants from 'expo-constants';
 import { Feather } from '@expo/vector-icons'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Header } from 'react-native-elements';
@@ -11,6 +13,15 @@ import xfotosWhite from '../../assets/XfotosWhite.png';
 import Circulo from '../../components/BtnCirculo';
 
 const TelaInicial = ({ navigation }) => {
+  // Estado da navegação na web
+  const [resultado, setResultado] = useState(null);
+
+  // Navegação WEB
+  const navegarWeb = async () => {
+    let resultado = await WebBrowser.openBrowserAsync('https://expo.io');
+    setResultado(resultado);
+  };
+
   // Propriedades de tempo, estado, referência de valor e outras possíveis definições
   const valorAnimado = useRef(new Animated.Value(0)).current; // valor de referência
   const animacao = (toValue) =>
@@ -34,6 +45,15 @@ const TelaInicial = ({ navigation }) => {
     <SafeAreaProvider>
       <Header
         placement="center"
+        leftComponent={() => (
+          <TouchableOpacity activeOpacity={0.6} onPress={navegarWeb}>
+            <Feather
+              name={'globe'}
+              size={30}
+              color={'#fff'}
+            />
+          </TouchableOpacity>
+        )}
         centerComponent={<View><Image source={xfotosWhite} /></View>}
         rightComponent={() => (
           <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.push('Camera')}>
