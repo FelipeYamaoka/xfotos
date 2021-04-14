@@ -43,7 +43,7 @@ const TelaInicial = ({ navigation }) => {
   // Enviar mensagem de sugestao atraves do whatsapp
   function sendWhatsapp() {
     let numero = '15991453639';
-    let mensagem = 'Olá, desejo dar sujestões para a aplicação.'
+    let mensagem = 'Olá, desejo dar sugestões para a aplicação.'
     Linking.openURL(`whatsapp://send?phone=55${numero}&text=${mensagem}`);
   }
 
