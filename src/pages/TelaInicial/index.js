@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-gesture-handler';
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Animated, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Animated, Button, Linking } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import Constants from 'expo-constants';
-import { Feather } from '@expo/vector-icons'
+import { Feather, FontAwesome } from '@expo/vector-icons'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Header } from 'react-native-elements';
 import xfotosWhite from '../../assets/XfotosWhite.png';
@@ -40,15 +40,22 @@ const TelaInicial = ({ navigation }) => {
     animacao(index === 1 ? 0 : 1).start();
   };
 
+  // Enviar mensagem de sugestao atraves do whatsapp
+  function sendWhatsapp() {
+    let numero = '15991453639';
+    let mensagem = 'Olá, desejo dar sujestões para a aplicação.'
+    Linking.openURL(`whatsapp://send?phone=55${numero}&text=${mensagem}`);
+  }
+
   return (
     // Cabeçalho com a implementação do Circulo
     <SafeAreaProvider>
       <Header
         placement="center"
         leftComponent={() => (
-          <TouchableOpacity activeOpacity={0.6} onPress={navegarWeb}>
-            <Feather
-              name={'globe'}
+          <TouchableOpacity activeOpacity={0.6} onPress={sendWhatsapp}>
+            <FontAwesome
+              name={'whatsapp'}
               size={30}
               color={'#fff'}
             />
