@@ -5,6 +5,7 @@ const Stack = createStackNavigator();
 
 import TelaInicial from '../pages/TelaInicial';
 import Camera from '../pages/Camera';
+import Mapa from '../pages/Mapa'
 
 function Routes() {
   return (
@@ -15,6 +16,7 @@ function Routes() {
     >
       <Stack.Screen name="TelaInicial" component={TelaInicial} />
       <Stack.Screen name="Camera" component={Camera} />
+      <Stack.Screen name="Mapa" component={Mapa} />
     </Stack.Navigator>
   );
 }
